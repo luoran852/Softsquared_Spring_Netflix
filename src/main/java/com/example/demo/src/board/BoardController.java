@@ -1,6 +1,8 @@
 package com.example.demo.src.board;
 
 import com.example.demo.src.board.model.GetBoardsRes;
+import com.example.demo.src.board.model.PostBoardReq;
+import com.example.demo.src.board.model.PostBoardRes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.example.demo.config.BaseException;
@@ -99,25 +101,22 @@ public class BoardController {
     }
 
     /**
-     * 회원가입 API
-     * [POST] /users
-     * @return BaseResponse<PostUserRes>
+     * 게시판 글 올리기 API
+     * [POST] /boards
+     * @return BaseResponse<String>
      */
     // Body
     @ResponseBody
     @PostMapping("")
-    public BaseResponse<PostUserRes> createUser(@RequestBody PostUserReq postUserReq) {
-        // TODO: email 관련한 짧은 validation 예시입니다. 그 외 더 부가적으로 추가해주세요!
-        if(postUserReq.getEmail() == null){
-            return new BaseResponse<>(POST_USERS_EMPTY_EMAIL);
-        }
-        //이메일 정규표현
-        if(!isRegexEmail(postUserReq.getEmail())){
-            return new BaseResponse<>(POST_USERS_INVALID_EMAIL);
+    public BaseResponse<PostBoardRes> postOnBoard(@RequestBody PostBoardReq postBoardReq) {
+        // 이름, 제목, 내용이 모두 입력되었는지 확인
+        if(postBoardReq.getUserName() == null || postBoardReq.getTitle() == null
+                || postBoardReq.getContents() == null){
+            return new BaseResponse<>(POST_BOARDS_EMPTY_VALUES);
         }
         try{
-            PostUserRes postUserRes = boardService.createUser(postUserReq);
-            return new BaseResponse<>(postUserRes);
+            PostBoardRes postBoardRes = boardService.postOnBoard(postBoardReq);
+            return new BaseResponse<>(postBoardRes);
         } catch(BaseException exception){
             return new BaseResponse<>((exception.getStatus()));
         }

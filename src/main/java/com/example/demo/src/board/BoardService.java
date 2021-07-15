@@ -2,6 +2,8 @@ package com.example.demo.src.board;
 
 import com.example.demo.config.BaseException;
 import com.example.demo.config.secret.Secret;
+import com.example.demo.src.board.model.PostBoardReq;
+import com.example.demo.src.board.model.PostBoardRes;
 import com.example.demo.src.user.model.*;
 import com.example.demo.utils.AES128;
 import com.example.demo.utils.JwtService;
@@ -34,25 +36,13 @@ public class BoardService {
     }
 
     //POST
-    public PostUserRes createUser(PostUserReq postUserReq) throws BaseException {
-        //중복
-        if(boardProvider.checkEmail(postUserReq.getEmail()) ==1){
-            throw new BaseException(POST_USERS_EXISTS_EMAIL);
-        }
+    public PostBoardRes postOnBoard(PostBoardReq postBoardReq) throws BaseException {
 
-        String pwd;
         try{
-            //암호화
-            pwd = new AES128(Secret.USER_INFO_PASSWORD_KEY).encrypt(postUserReq.getPassword());
-            postUserReq.setPassword(pwd);
-        } catch (Exception ignored) {
-            throw new BaseException(PASSWORD_ENCRYPTION_ERROR);
-        }
-        try{
-            int userIdx = boardDao.createUser(postUserReq);
+            int userIdx = boardDao.postOnBoard(postBoardReq);
             //jwt 발급.
             String jwt = jwtService.createJwt(userIdx);
-            return new PostUserRes(jwt,userIdx);
+            return new PostBoardRes(jwt);
         } catch (Exception exception) {
             throw new BaseException(DATABASE_ERROR);
         }

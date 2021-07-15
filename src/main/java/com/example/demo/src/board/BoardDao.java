@@ -1,6 +1,7 @@
 package com.example.demo.src.board;
 
 import com.example.demo.src.board.model.GetBoardsRes;
+import com.example.demo.src.board.model.PostBoardReq;
 import com.example.demo.src.user.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -57,15 +58,22 @@ public class BoardDao {
                 getUserParams);
     }
 
+    public int postOnBoard(PostBoardReq postBoardReq){
+        String postOnBoardQuery = "insert into Board (userName, title, contnets) VALUES (?,?,?)";
+        Object[] postOnBoardParams = new Object[]{postBoardReq.getUserName(), postBoardReq.getTitle(), postBoardReq.getContents()};
+        this.jdbcTemplate.update(postOnBoardQuery, postOnBoardParams);
 
-    public int createUser(PostUserReq postUserReq){
-        String createUserQuery = "insert into UserInfo (userName, ID, password, email) VALUES (?,?,?,?)";
-        Object[] createUserParams = new Object[]{postUserReq.getUserName(), postUserReq.getId(), postUserReq.getPassword(), postUserReq.getEmail()};
-        this.jdbcTemplate.update(createUserQuery, createUserParams);
-
-        String lastInserIdQuery = "select last_insert_id()";
-        return this.jdbcTemplate.queryForObject(lastInserIdQuery,int.class);
+        return this.jdbcTemplate.queryForObject(postOnBoardQuery,int.class);
     }
+
+//    public int createUser(PostUserReq postUserReq){
+//        String createUserQuery = "insert into UserInfo (userName, ID, password, email) VALUES (?,?,?,?)";
+//        Object[] createUserParams = new Object[]{postUserReq.getUserName(), postUserReq.getId(), postUserReq.getPassword(), postUserReq.getEmail()};
+//        this.jdbcTemplate.update(createUserQuery, createUserParams);
+//
+//        String lastInserIdQuery = "select last_insert_id()";
+//        return this.jdbcTemplate.queryForObject(lastInserIdQuery,int.class);
+//    }
 
     public int checkEmail(String email){
         String checkEmailQuery = "select exists(select email from UserInfo where email = ?)";
