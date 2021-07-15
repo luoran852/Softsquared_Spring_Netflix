@@ -14,7 +14,7 @@ public enum BaseResponseStatus {
 
 
     /**
-     * 2000 : Request 오류
+     * 2000 : Request 오류 - DB 가기 전 오류
      */
     // Common
     REQUEST_ERROR(false, 2000, "입력값을 확인해주세요."),
@@ -33,7 +33,7 @@ public enum BaseResponseStatus {
 
 
     /**
-     * 3000 : Response 오류
+     * 3000 : Response 오류 - DB 갔다온 오류
      */
     // Common
     RESPONSE_ERROR(false, 3000, "값을 불러오는데 실패하였습니다."),
