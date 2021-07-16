@@ -7,10 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class DeleteBoardRes {
+public class DeleteBoardReq {
     private int boardIdx;
-    private String userName;
-    private String title;
-    private String contents;
-    private String createdAt;
 }

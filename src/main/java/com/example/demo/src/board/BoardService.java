@@ -2,6 +2,8 @@ package com.example.demo.src.board;
 
 import com.example.demo.config.BaseException;
 import com.example.demo.config.secret.Secret;
+import com.example.demo.src.board.model.DeleteBoardReq;
+import com.example.demo.src.board.model.PatchBoardReq;
 import com.example.demo.src.board.model.PostBoardReq;
 import com.example.demo.src.board.model.PostBoardRes;
 import com.example.demo.src.user.model.*;
@@ -58,4 +60,29 @@ public class BoardService {
             throw new BaseException(DATABASE_ERROR);
         }
     }
+
+    // PATCH
+    public void modifyBoard(PatchBoardReq patchBoardReq) throws BaseException {
+        try{
+            int result = boardDao.modifyBoard(patchBoardReq);
+            if(result == 0){
+                throw new BaseException(MODIFY_FAIL_BOARD);
+            }
+        } catch(Exception exception){
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
+    // DELETE
+    public void deleteBoard(DeleteBoardReq deleteBoardReq) throws BaseException {
+        try{
+            int result = boardDao.deleteBoard(deleteBoardReq);
+            if(result == 0){
+                throw new BaseException(MODIFY_FAIL_BOARD);
+            }
+        } catch(Exception exception){
+            throw new BaseException(DATABASE_ERROR);
+        }
+    }
+
 }

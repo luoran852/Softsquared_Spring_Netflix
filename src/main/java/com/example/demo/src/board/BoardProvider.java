@@ -31,6 +31,7 @@ public class BoardProvider {
         this.jwtService = jwtService;
     }
 
+    // GET
     public List<GetBoardsRes> getBoards() throws BaseException{
         try{
             List<GetBoardsRes> getBoardsRes = boardDao.getBoards();

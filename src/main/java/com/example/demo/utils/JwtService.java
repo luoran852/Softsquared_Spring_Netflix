@@ -45,6 +45,32 @@ public class JwtService {
     }
 
     /*
+    JWT에서 boardIdx 추출
+    @return int
+    @throws BaseException
+     */
+    public int getBoardIdx() throws BaseException{
+        //1. JWT 추출
+        String accessToken = getJwt();
+        if(accessToken == null || accessToken.length() == 0){
+            throw new BaseException(EMPTY_JWT);
+        }
+
+        // 2. JWT parsing
+        Jws<Claims> claims;
+        try{
+            claims = Jwts.parser()
+                    .setSigningKey(Secret.JWT_SECRET_KEY)
+                    .parseClaimsJws(accessToken);
+        } catch (Exception ignored) {
+            throw new BaseException(INVALID_JWT);
+        }
+
+        // 3. boardIdx 추출
+        return claims.getBody().get("boardIdx",Integer.class);
+    }
+
+    /*
     JWT에서 userIdx 추출
     @return int
     @throws BaseException

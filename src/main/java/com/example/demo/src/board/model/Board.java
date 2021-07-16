@@ -7,8 +7,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class PatchBoardReq {
+public class Board {
+    private int boardIdx;
+    private String userName;
     private String title;
     private String contents;
-    private int boardIdx;
+    private String createdAt;
 }

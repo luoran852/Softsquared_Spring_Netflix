@@ -1,6 +1,8 @@
 package com.example.demo.src.board;
 
+import com.example.demo.src.board.model.DeleteBoardReq;
 import com.example.demo.src.board.model.GetBoardsRes;
+import com.example.demo.src.board.model.PatchBoardReq;
 import com.example.demo.src.board.model.PostBoardReq;
 import com.example.demo.src.user.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,7 @@ public class BoardDao {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    // GET
     public List<GetBoardsRes> getBoards (){
         String getBoardsQuery = "select * from Board";
         return this.jdbcTemplate.query(getBoardsQuery,
@@ -58,6 +61,7 @@ public class BoardDao {
                 getUserParams);
     }
 
+    // POST
     public int postOnBoard(PostBoardReq postBoardReq){
         String postOnBoardQuery = "insert into Board (userName, title, contnets) VALUES (?,?,?)";
         Object[] postOnBoardParams = new Object[]{postBoardReq.getUserName(), postBoardReq.getTitle(), postBoardReq.getContents()};
@@ -89,6 +93,22 @@ public class BoardDao {
         Object[] modifyUserNameParams = new Object[]{patchUserReq.getUserName(), patchUserReq.getUserIdx()};
 
         return this.jdbcTemplate.update(modifyUserNameQuery,modifyUserNameParams);
+    }
+
+    // PATCH
+    public int modifyBoard(PatchBoardReq patchBoardReq){
+        String modifyBoardQuery = "update Board set title = ? and contents = ? where boardIdx = ? ";
+        Object[] modifyBoardParams = new Object[]{patchBoardReq.getTitle(), patchBoardReq.getContents(), patchBoardReq.getBoardIdx()};
+
+        return this.jdbcTemplate.update(modifyBoardQuery,modifyBoardParams);
+    }
+
+    // DELETE
+    public int deleteBoard(DeleteBoardReq deleteBoardReq){
+        String deleteBoardQuery = "delete Board * where boardIdx = ? ";
+        Object[] deleteBoardParams = new Object[]{deleteBoardReq.getBoardIdx()};
+
+        return this.jdbcTemplate.update(deleteBoardQuery,deleteBoardParams);
     }
 
     public User getPwd(PostLoginReq postLoginReq){
