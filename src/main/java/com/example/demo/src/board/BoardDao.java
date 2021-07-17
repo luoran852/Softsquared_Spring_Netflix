@@ -1,6 +1,5 @@
 package com.example.demo.src.board;
 
-import com.example.demo.src.board.model.DeleteBoardReq;
 import com.example.demo.src.board.model.GetBoardsRes;
 import com.example.demo.src.board.model.PatchBoardReq;
 import com.example.demo.src.board.model.PostBoardReq;
@@ -35,39 +34,13 @@ public class BoardDao {
         );
     }
 
-    public List<GetUserRes> getUsersByEmail(String email){
-        String getUsersByEmailQuery = "select * from UserInfo where email =?";
-        String getUsersByEmailParams = email;
-        return this.jdbcTemplate.query(getUsersByEmailQuery,
-                (rs, rowNum) -> new GetUserRes(
-                        rs.getInt("userIdx"),
-                        rs.getString("userName"),
-                        rs.getString("ID"),
-                        rs.getString("Email"),
-                        rs.getString("password")),
-                getUsersByEmailParams);
-    }
-
-    public GetUserRes getUser(int userIdx){
-        String getUserQuery = "select * from UserInfo where userIdx = ?";
-        int getUserParams = userIdx;
-        return this.jdbcTemplate.queryForObject(getUserQuery,
-                (rs, rowNum) -> new GetUserRes(
-                        rs.getInt("userIdx"),
-                        rs.getString("userName"),
-                        rs.getString("ID"),
-                        rs.getString("Email"),
-                        rs.getString("password")),
-                getUserParams);
-    }
 
     // POST
     public int postOnBoard(PostBoardReq postBoardReq){
-        String postOnBoardQuery = "insert into Board (userName, title, contnets) VALUES (?,?,?)";
+        String postOnBoardQuery = "insert into Board (userName, title, contents) VALUES (?,?,?)";
         Object[] postOnBoardParams = new Object[]{postBoardReq.getUserName(), postBoardReq.getTitle(), postBoardReq.getContents()};
-        this.jdbcTemplate.update(postOnBoardQuery, postOnBoardParams);
 
-        return this.jdbcTemplate.queryForObject(postOnBoardQuery,int.class);
+        return this.jdbcTemplate.update(postOnBoardQuery, postOnBoardParams);
     }
 
 //    public int createUser(PostUserReq postUserReq){
@@ -79,53 +52,20 @@ public class BoardDao {
 //        return this.jdbcTemplate.queryForObject(lastInserIdQuery,int.class);
 //    }
 
-    public int checkEmail(String email){
-        String checkEmailQuery = "select exists(select email from UserInfo where email = ?)";
-        String checkEmailParams = email;
-        return this.jdbcTemplate.queryForObject(checkEmailQuery,
-                int.class,
-                checkEmailParams);
-
-    }
-
-    public int modifyUserName(PatchUserReq patchUserReq){
-        String modifyUserNameQuery = "update UserInfo set userName = ? where userIdx = ? ";
-        Object[] modifyUserNameParams = new Object[]{patchUserReq.getUserName(), patchUserReq.getUserIdx()};
-
-        return this.jdbcTemplate.update(modifyUserNameQuery,modifyUserNameParams);
-    }
 
     // PATCH
-    public int modifyBoard(PatchBoardReq patchBoardReq){
-        String modifyBoardQuery = "update Board set title = ? and contents = ? where boardIdx = ? ";
-        Object[] modifyBoardParams = new Object[]{patchBoardReq.getTitle(), patchBoardReq.getContents(), patchBoardReq.getBoardIdx()};
+    public int modifyBoard(PatchBoardReq patchBoardReq, int boardIdx){
+        String modifyBoardQuery = "update Board set title = ?, contents = ? where boardIdx = ?";
+        Object[] modifyBoardParams = new Object[]{patchBoardReq.getTitle(), patchBoardReq.getContents(), boardIdx};
 
         return this.jdbcTemplate.update(modifyBoardQuery,modifyBoardParams);
     }
 
     // DELETE
-    public int deleteBoard(DeleteBoardReq deleteBoardReq){
-        String deleteBoardQuery = "delete Board * where boardIdx = ? ";
-        Object[] deleteBoardParams = new Object[]{deleteBoardReq.getBoardIdx()};
+    public int deleteBoard(int boardIdx){
+        String deleteBoardQuery = "delete from Board where boardIdx = ? ";
 
-        return this.jdbcTemplate.update(deleteBoardQuery,deleteBoardParams);
-    }
-
-    public User getPwd(PostLoginReq postLoginReq){
-        String getPwdQuery = "select userIdx, password,email,userName,ID from UserInfo where ID = ?";
-        String getPwdParams = postLoginReq.getId();
-
-        return this.jdbcTemplate.queryForObject(getPwdQuery,
-                (rs,rowNum)-> new User(
-                        rs.getInt("userIdx"),
-                        rs.getString("ID"),
-                        rs.getString("userName"),
-                        rs.getString("password"),
-                        rs.getString("email")
-                ),
-                getPwdParams
-        );
-
+        return this.jdbcTemplate.update(deleteBoardQuery, boardIdx);
     }
 
 

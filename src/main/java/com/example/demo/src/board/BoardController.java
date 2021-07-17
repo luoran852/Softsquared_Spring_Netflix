@@ -55,48 +55,6 @@ public class BoardController {
         }
     }
 
-    /**
-     * 회원 조회 API
-     * [GET] /users
-     * 회원 번호 및 이메일 검색 조회 API
-     * [GET] /users? Email=
-     * @return BaseResponse<List<GetUserRes>>
-     */
-//    //Query String
-//    @ResponseBody
-//    @GetMapping("") // (GET) 127.0.0.1:9000/app/users
-//    public BaseResponse<List<GetUserRes>> getUsers(@RequestParam(required = false) String Email) {
-//        try{
-//            if(Email == null){
-//                List<GetUserRes> getUsersRes = boardProvider.getUsers();
-//                return new BaseResponse<>(getUsersRes);
-//            }
-//            // Get Users
-//            List<GetUserRes> getUsersRes = boardProvider.getUsersByEmail(Email);
-//            return new BaseResponse<>(getUsersRes);
-//        } catch(BaseException exception){
-//            return new BaseResponse<>((exception.getStatus()));
-//        }
-//    }
-
-    /**
-     * 회원 1명 조회 API
-     * [GET] /users/:userIdx
-     * @return BaseResponse<GetUserRes>
-     */
-    // Path-variable
-    @ResponseBody
-    @GetMapping("/{userIdx}") // (GET) 127.0.0.1:9000/app/users/:userIdx
-    public BaseResponse<GetUserRes> getUser(@PathVariable("userIdx") int userIdx) {
-        // Get Users
-        try{
-            GetUserRes getUserRes = boardProvider.getUser(userIdx);
-            return new BaseResponse<>(getUserRes);
-        } catch(BaseException exception){
-            return new BaseResponse<>((exception.getStatus()));
-        }
-
-    }
 
     /**
      * 게시판 글 올리기 API
@@ -119,74 +77,7 @@ public class BoardController {
         }
     }
 
-    /**
-     * 회원가입 API
-     * [POST] /users
-     * @return BaseResponse<PostUserRes>
-     */
-    // Body
-//    @ResponseBody
-//    @PostMapping("")
-//    public BaseResponse<PostUserRes> createUser(@RequestBody PostUserReq postUserReq) {
-//        // TODO: email 관련한 짧은 validation 예시입니다. 그 외 더 부가적으로 추가해주세요!
-//        if(postUserReq.getEmail() == null){
-//            return new BaseResponse<>(POST_USERS_EMPTY_EMAIL);
-//        }
-//        //이메일 정규표현
-//        if(!isRegexEmail(postUserReq.getEmail())){
-//            return new BaseResponse<>(POST_USERS_INVALID_EMAIL);
-//        }
-//        try{
-//            PostUserRes postUserRes = boardService.createUser(postUserReq);
-//            return new BaseResponse<>(postUserRes);
-//        } catch(BaseException exception){
-//            return new BaseResponse<>((exception.getStatus()));
-//        }
-//    }
 
-    /**
-     * 로그인 API
-     * [POST] /users/logIn
-     * @return BaseResponse<PostLoginRes>
-     */
-    @ResponseBody
-    @PostMapping("/logIn")
-    public BaseResponse<PostLoginRes> logIn(@RequestBody PostLoginReq postLoginReq){
-        try{
-            // TODO: 로그인 값들에 대한 형식적인 validation 처리해주셔야합니다!
-            // TODO: 유저의 status ex) 비활성화된 유저, 탈퇴한 유저 등을 관리해주고 있다면 해당 부분에 대한 validation 처리도 해주셔야합니다.
-            PostLoginRes postLoginRes = boardProvider.logIn(postLoginReq);
-            return new BaseResponse<>(postLoginRes);
-        } catch (BaseException exception){
-            return new BaseResponse<>(exception.getStatus());
-        }
-    }
-
-    /**
-     * 유저정보변경 API
-     * [PATCH] /users/:userIdx
-     * @return BaseResponse<String>
-     */
-//    @ResponseBody
-//    @PatchMapping("/{userIdx}")
-//    public BaseResponse<String> modifyUserName(@PathVariable("userIdx") int userIdx, @RequestBody User user){
-//        try {
-//            //jwt에서 idx 추출.
-//            int userIdxByJwt = jwtService.getUserIdx();
-//            //userIdx와 접근한 유저가 같은지 확인
-//            if(userIdx != userIdxByJwt){
-//                return new BaseResponse<>(INVALID_USER_JWT);
-//            }
-//            //같다면 유저네임 변경
-//            PatchUserReq patchUserReq = new PatchUserReq(userIdx,user.getUserName());
-//            boardService.modifyUserName(patchUserReq);
-//
-//            String result = "";
-//            return new BaseResponse<>(result);
-//        } catch (BaseException exception) {
-//            return new BaseResponse<>((exception.getStatus()));
-//        }
-//    }
 
     /**
      * 게시판글 수정하기 API
@@ -198,15 +89,15 @@ public class BoardController {
     @PatchMapping("/{boardIdx}")
     public BaseResponse<String> modifyBoard(@PathVariable("boardIdx") int boardIdx, @RequestBody Board board) {
         try {
-            //jwt에서 idx추출.
-            int boardIdxByJwt = jwtService.getBoardIdx();
-            //boardIdx와 접근한 게시글이 같은지 확인
-            if (boardIdx != boardIdxByJwt) {
-                return new BaseResponse<>(INVALID_BOARD_JWT);
-            }
+//            //jwt에서 idx추출.
+//            int boardIdxByJwt = jwtService.getBoardIdx();
+//            //boardIdx와 접근한 게시글이 같은지 확인
+//            if (boardIdx != boardIdxByJwt) {
+//                return new BaseResponse<>(INVALID_BOARD_JWT);
+//            }
             //같다면제목,내용변경
-            PatchBoardReq patchBoardReq = new PatchBoardReq(board.getTitle(), board.getUserName(), boardIdx);
-            boardService.modifyBoard(patchBoardReq);
+            PatchBoardReq patchBoardReq = new PatchBoardReq(board.getTitle(), board.getContents());
+            boardService.modifyBoard(patchBoardReq, boardIdx);
 
             String result = "";
             return new BaseResponse<>(result);
@@ -222,17 +113,17 @@ public class BoardController {
      */
     @ResponseBody
     @DeleteMapping("/{boardIdx}")
-    public BaseResponse<String> deleteBoard(@PathVariable("boardIdx") int boardIdx, @RequestBody Board board) {
+    public BaseResponse<String> deleteBoard(@PathVariable("boardIdx") int boardIdx) {
         try {
-            //jwt에서 idx추출.
-            int boardIdxByJwt = jwtService.getBoardIdx();
-            //boardIdx와 접근한 게시글이 같은지 확인
-            if (boardIdx != boardIdxByJwt) {
-                return new BaseResponse<>(INVALID_BOARD_JWT);
-            }
+//            //jwt에서 idx추출.
+//            int boardIdxByJwt = jwtService.getBoardIdx();
+//            //boardIdx와 접근한 게시글이 같은지 확인
+//            if (boardIdx != boardIdxByJwt) {
+//                return new BaseResponse<>(INVALID_BOARD_JWT);
+//            }
             //같다면 해당 게시글 삭제
-            DeleteBoardReq deleteBoardReq = new DeleteBoardReq(boardIdx);
-            boardService.deleteBoard(deleteBoardReq);
+//            DeleteBoardReq deleteBoardReq = new DeleteBoardReq(boardIdx);
+            boardService.deleteBoard(boardIdx);
 
             String result = "";
             return new BaseResponse<>(result);

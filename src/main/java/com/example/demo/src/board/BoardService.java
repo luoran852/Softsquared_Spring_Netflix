@@ -1,21 +1,15 @@
 package com.example.demo.src.board;
 
 import com.example.demo.config.BaseException;
-import com.example.demo.config.secret.Secret;
-import com.example.demo.src.board.model.DeleteBoardReq;
 import com.example.demo.src.board.model.PatchBoardReq;
 import com.example.demo.src.board.model.PostBoardReq;
 import com.example.demo.src.board.model.PostBoardRes;
 import com.example.demo.src.user.model.*;
-import com.example.demo.utils.AES128;
 import com.example.demo.utils.JwtService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.jdbc.core.JdbcTemplate;
-
-import javax.sql.DataSource;
 
 import static com.example.demo.config.BaseResponseStatus.*;
 
@@ -50,21 +44,11 @@ public class BoardService {
         }
     }
 
-    public void modifyUserName(PatchUserReq patchUserReq) throws BaseException {
-        try{
-            int result = boardDao.modifyUserName(patchUserReq);
-            if(result == 0){
-                throw new BaseException(MODIFY_FAIL_USERNAME);
-            }
-        } catch(Exception exception){
-            throw new BaseException(DATABASE_ERROR);
-        }
-    }
 
     // PATCH
-    public void modifyBoard(PatchBoardReq patchBoardReq) throws BaseException {
+    public void modifyBoard(PatchBoardReq patchBoardReq, int boardIdx) throws BaseException {
         try{
-            int result = boardDao.modifyBoard(patchBoardReq);
+            int result = boardDao.modifyBoard(patchBoardReq, boardIdx);
             if(result == 0){
                 throw new BaseException(MODIFY_FAIL_BOARD);
             }
@@ -74,9 +58,9 @@ public class BoardService {
     }
 
     // DELETE
-    public void deleteBoard(DeleteBoardReq deleteBoardReq) throws BaseException {
+    public void deleteBoard(int boardIdx) throws BaseException {
         try{
-            int result = boardDao.deleteBoard(deleteBoardReq);
+            int result = boardDao.deleteBoard(boardIdx);
             if(result == 0){
                 throw new BaseException(MODIFY_FAIL_BOARD);
             }

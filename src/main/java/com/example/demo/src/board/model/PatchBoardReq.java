@@ -10,5 +10,4 @@ import lombok.Setter;
 public class PatchBoardReq {
     private String title;
     private String contents;
-    private int boardIdx;
 }
