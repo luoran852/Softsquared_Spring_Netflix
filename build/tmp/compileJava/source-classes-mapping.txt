@@ -1,60 +1,126 @@
-com/example/demo/src/user/model/PostUserReq.java
- com.example.demo.src.user.model.PostUserReq
 com/example/demo/src/board/BoardProvider.java
  com.example.demo.src.board.BoardProvider
 com/example/demo/config/Constant.java
  com.example.demo.config.Constant
-com/example/demo/src/board/BoardService.java
- com.example.demo.src.board.BoardService
-com/example/demo/src/board/model/DeleteBoardRes.java
- com.example.demo.src.board.model.DeleteBoardRes
+com/example/demo/src/netflixContents/model/GetContentsMovieKeepRes.java
+ com.example.demo.src.netflixContents.model.GetContentsMovieKeepRes
+com/example/demo/src/netflixContents/model/GetContentsTvTrendingRes.java
+ com.example.demo.src.netflixContents.model.GetContentsTvTrendingRes
 com/example/demo/src/board/model/GetBoardsRes.java
  com.example.demo.src.board.model.GetBoardsRes
 com/example/demo/utils/ValidationRegex.java
  com.example.demo.utils.ValidationRegex
-com/example/demo/src/user/model/PostLoginRes.java
- com.example.demo.src.user.model.PostLoginRes
-com/example/demo/src/user/UserDao.java
- com.example.demo.src.user.UserDao
-com/example/demo/utils/AES128.java
- com.example.demo.utils.AES128
+com/example/demo/src/netflixUser/model/PostNetflixLoginRes.java
+ com.example.demo.src.netflixUser.model.PostNetflixLoginRes
+com/example/demo/src/netflixContents/model/GetContentsMovieMainCateRes.java
+ com.example.demo.src.netflixContents.model.GetContentsMovieMainCateRes
+com/example/demo/src/netflixContents/ContentsDao.java
+ com.example.demo.src.netflixContents.ContentsDao
+com/example/demo/src/netflixUser/NetflixUserController.java
+ com.example.demo.src.netflixUser.NetflixUserController
 com/example/demo/config/BaseResponseStatus.java
  com.example.demo.config.BaseResponseStatus
-com/example/demo/src/user/model/PatchUserReq.java
- com.example.demo.src.user.model.PatchUserReq
-com/example/demo/src/WebSecurityConfig.java
- com.example.demo.src.WebSecurityConfig
 com/example/demo/src/board/BoardDao.java
  com.example.demo.src.board.BoardDao
-com/example/demo/src/test/TestController.java
- com.example.demo.src.test.TestController
-com/example/demo/src/user/model/PostLoginReq.java
- com.example.demo.src.user.model.PostLoginReq
+com/example/demo/src/netflixContents/model/GetContentsTvKeepRes.java
+ com.example.demo.src.netflixContents.model.GetContentsTvKeepRes
 com/example/demo/src/board/model/PostBoardReq.java
  com.example.demo.src.board.model.PostBoardReq
+com/example/demo/src/netflixUser/model/PostNetflixLoginReq.java
+ com.example.demo.src.netflixUser.model.PostNetflixLoginReq
+com/example/demo/src/netflixContents/model/GetContentsTvEpisodesRes.java
+ com.example.demo.src.netflixContents.model.GetContentsTvEpisodesRes
 com/example/demo/config/secret/Secret.java
  com.example.demo.config.secret.Secret
+com/example/demo/src/netflixContents/model/GetContentsMovieDetailsRes.java
+ com.example.demo.src.netflixContents.model.GetContentsMovieDetailsRes
+com/example/demo/src/board/model/Board.java
+ com.example.demo.src.board.model.Board
 com/example/demo/src/user/model/PostUserRes.java
  com.example.demo.src.user.model.PostUserRes
-com/example/demo/src/user/UserController.java
- com.example.demo.src.user.UserController
+com/example/demo/src/netflixUser/model/PostNetflixUserReq.java
+ com.example.demo.src.netflixUser.model.PostNetflixUserReq
 com/example/demo/config/BaseResponse.java
  com.example.demo.config.BaseResponse
-com/example/demo/src/user/UserProvider.java
- com.example.demo.src.user.UserProvider
-com/example/demo/src/user/model/User.java
- com.example.demo.src.user.model.User
+com/example/demo/src/netflixContents/model/GetContentsTvRankingRes.java
+ com.example.demo.src.netflixContents.model.GetContentsTvRankingRes
 com/example/demo/src/user/UserService.java
  com.example.demo.src.user.UserService
-com/example/demo/src/user/model/GetUserRes.java
- com.example.demo.src.user.model.GetUserRes
 com/example/demo/src/board/model/PatchBoardReq.java
  com.example.demo.src.board.model.PatchBoardReq
 com/example/demo/config/BaseException.java
  com.example.demo.config.BaseException
+com/example/demo/src/netflixContents/model/GetContentsMovieWatchingCateRes.java
+ com.example.demo.src.netflixContents.model.GetContentsMovieWatchingCateRes
+com/example/demo/src/netflixContents/model/GetContentsTvMainRes.java
+ com.example.demo.src.netflixContents.model.GetContentsTvMainRes
+com/example/demo/src/netflixContents/model/GetContentsMovieMainRes.java
+ com.example.demo.src.netflixContents.model.GetContentsMovieMainRes
+com/example/demo/src/user/model/PostUserReq.java
+ com.example.demo.src.user.model.PostUserReq
+com/example/demo/src/board/BoardService.java
+ com.example.demo.src.board.BoardService
+com/example/demo/src/netflixContents/model/GetContentsMovieRankingRes.java
+ com.example.demo.src.netflixContents.model.GetContentsMovieRankingRes
+com/example/demo/src/netflixContents/ContentsProvider.java
+ com.example.demo.src.netflixContents.ContentsProvider
+com/example/demo/src/netflixContents/model/GetContentsTvWatchingRes.java
+ com.example.demo.src.netflixContents.model.GetContentsTvWatchingRes
+com/example/demo/src/netflixContents/model/GetContentsMovieRankingCateRes.java
+ com.example.demo.src.netflixContents.model.GetContentsMovieRankingCateRes
+com/example/demo/src/user/model/PostLoginRes.java
+ com.example.demo.src.user.model.PostLoginRes
+com/example/demo/src/netflixContents/ContentsService.java
+ com.example.demo.src.netflixContents.ContentsService
+com/example/demo/src/board/model/PostBoardRes.java
+ com.example.demo.src.board.model.PostBoardRes
+com/example/demo/src/user/UserDao.java
+ com.example.demo.src.user.UserDao
+com/example/demo/src/netflixContents/model/Contents.java
+ com.example.demo.src.netflixContents.model.Contents
+com/example/demo/utils/AES128.java
+ com.example.demo.utils.AES128
+com/example/demo/src/user/model/PatchUserReq.java
+ com.example.demo.src.user.model.PatchUserReq
+com/example/demo/src/netflixUser/NetflixUserDao.java
+ com.example.demo.src.netflixUser.NetflixUserDao
+com/example/demo/src/netflixContents/model/GetContentsMovieWatchingRes.java
+ com.example.demo.src.netflixContents.model.GetContentsMovieWatchingRes
+com/example/demo/src/WebSecurityConfig.java
+ com.example.demo.src.WebSecurityConfig
+com/example/demo/src/netflixContents/model/GetContentsMovieTrendingCateRes.java
+ com.example.demo.src.netflixContents.model.GetContentsMovieTrendingCateRes
+com/example/demo/src/test/TestController.java
+ com.example.demo.src.test.TestController
+com/example/demo/src/netflixUser/NetflixUserService.java
+ com.example.demo.src.netflixUser.NetflixUserService
+com/example/demo/src/user/model/PostLoginReq.java
+ com.example.demo.src.user.model.PostLoginReq
+com/example/demo/src/netflixUser/model/GetProfilesRes.java
+ com.example.demo.src.netflixUser.model.GetProfilesRes
+com/example/demo/src/netflixContents/model/GetContentsTvDetailsRes.java
+ com.example.demo.src.netflixContents.model.GetContentsTvDetailsRes
+com/example/demo/src/netflixContents/ContentsController.java
+ com.example.demo.src.netflixContents.ContentsController
+com/example/demo/src/netflixUser/model/NetflixUser.java
+ com.example.demo.src.netflixUser.model.NetflixUser
+com/example/demo/src/user/UserController.java
+ com.example.demo.src.user.UserController
+com/example/demo/src/board/BoardController.java
+ com.example.demo.src.board.BoardController
+com/example/demo/src/netflixUser/model/PostNetflixUserRes.java
+ com.example.demo.src.netflixUser.model.PostNetflixUserRes
+com/example/demo/src/user/model/User.java
+ com.example.demo.src.user.model.User
+com/example/demo/src/user/model/GetUserRes.java
+ com.example.demo.src.user.model.GetUserRes
+com/example/demo/src/netflixUser/NetflixUserProvider.java
+ com.example.demo.src.netflixUser.NetflixUserProvider
 com/example/demo/DemoApplication.java
  com.example.demo.DemoApplication
 com/example/demo/utils/JwtService.java
  com.example.demo.utils.JwtService
-com/example/demo/src/board/BoardController.java
- com.example.demo.src.board.BoardController
+com/example/demo/src/user/UserProvider.java
+ com.example.demo.src.user.UserProvider
+com/example/demo/src/netflixContents/model/GetContentsMovieTrendingRes.java
+ com.example.demo.src.netflixContents.model.GetContentsMovieTrendingRes
