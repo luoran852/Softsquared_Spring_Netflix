@@ -46,6 +46,8 @@ com/example/demo/src/netflixContents/model/GetContentsTvRankingRes.java
  com.example.demo.src.netflixContents.model.GetContentsTvRankingRes
 com/example/demo/src/user/UserService.java
  com.example.demo.src.user.UserService
+com/example/demo/src/netflixContents/model/GetContentsMovieKeepCateRes.java
+ com.example.demo.src.netflixContents.model.GetContentsMovieKeepCateRes
 com/example/demo/src/board/model/PatchBoardReq.java
  com.example.demo.src.board.model.PatchBoardReq
 com/example/demo/config/BaseException.java
@@ -92,6 +94,8 @@ com/example/demo/src/netflixContents/model/GetContentsMovieTrendingCateRes.java
  com.example.demo.src.netflixContents.model.GetContentsMovieTrendingCateRes
 com/example/demo/src/test/TestController.java
  com.example.demo.src.test.TestController
+com/example/demo/src/netflixContents/model/GetContentsToBeReleasedRes.java
+ com.example.demo.src.netflixContents.model.GetContentsToBeReleasedRes
 com/example/demo/src/netflixUser/NetflixUserService.java
  com.example.demo.src.netflixUser.NetflixUserService
 com/example/demo/src/user/model/PostLoginReq.java
