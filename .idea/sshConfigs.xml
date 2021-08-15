@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="SshConfigs">
-    <configs>
-      <sshConfig host="15.165.16.88" id="28ca63da-d691-4069-84b5-05fbce315c2d" keyPath="$USER_HOME$/Downloads/softsquared_server.pem" port="22" nameFormat="DESCRIPTIVE" username="ubuntu" />
-    </configs>
-  </component>
-</project>
