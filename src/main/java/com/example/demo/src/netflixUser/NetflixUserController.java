@@ -105,7 +105,7 @@ public class NetflixUserController {
             if (postNetflixLoginReq.getEmail().equals("")){
                 return new BaseResponse<>(POST_USERS_EMPTY_EMAIL);
             }
-            if (postNetflixLoginReq.getEmail().equals("")){
+            if (postNetflixLoginReq.getPwd().equals("")){
                 return new BaseResponse<>(POST_USERS_EMPTY_PASSWORD);
             }
 
